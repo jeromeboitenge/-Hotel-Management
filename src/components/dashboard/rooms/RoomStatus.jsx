@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
+import RoomForm from './RoomForm';
 import { 
-  BedDouble, Users, CheckCircle, XCircle, AlertCircle, 
-  Filter, Edit, Trash2, Search, Plus, X as XIcon,
-  TrendingUp, Download, Mail, Calendar
+  Users, CheckCircle, AlertCircle, 
+  Edit, Trash2, Search, Plus, X as XIcon,
+  TrendingUp, Calendar
 } from 'lucide-react';
 
 const RoomStatus = () => {
@@ -20,9 +21,10 @@ const RoomStatus = () => {
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
 
   // Sample room data
-  const rooms = [
+  const [rooms, setRooms] = useState([
     {
       id: 101,
       type: 'Single',
@@ -43,7 +45,7 @@ const RoomStatus = () => {
       assignedStaff: 'Mary Johnson'
     },
     // Add more sample rooms as needed
-  ];
+  ]);
 
   // Filter rooms
   const filteredRooms = useMemo(() => {
@@ -168,18 +170,33 @@ const RoomStatus = () => {
     });
   };
 
+  // Handle adding a new room
+  const handleAddRoom = (newRoom) => {
+    setRooms([...rooms, { ...newRoom, id: parseInt(newRoom.id) }]);
+    setIsAddRoomModalOpen(false);
+  };
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       {/* Filters Section */}
       <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Room Status</h2>
-          <button 
-            className="flex items-center space-x-2 px-4 py-2 text-primary hover:bg-primary/10 rounded"
-          >
-            <TrendingUp className="h-4 w-4" />
-            <span>Analytics</span>
-          </button>
+          <div className="flex space-x-2">
+            <button 
+              className="flex items-center space-x-2 px-4 py-2 text-primary hover:bg-primary/10 rounded"
+            >
+              <TrendingUp className="h-4 w-4" />
+              <span>Analytics</span>
+            </button>
+            <button
+              onClick={() => setIsAddRoomModalOpen(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-primary rounded hover:bg-primary/90"
+            >
+              <Plus className="h-4 w-4" />
+              <span>Add New Room</span>
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -335,6 +352,24 @@ const RoomStatus = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Room Modal */}
+      {isAddRoomModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-xl font-semibold">Add Room</h3>
+              <button onClick={() => setIsAddRoomModalOpen(false)}>
+                <XIcon className="h-6 w-6" />
+              </button>
+            </div>
+            <RoomForm
+              onSave={handleAddRoom}
+              onCancel={() => setIsAddRoomModalOpen(false)}
+            />
           </div>
         </div>
       )}

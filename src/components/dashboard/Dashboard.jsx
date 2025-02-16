@@ -4,7 +4,7 @@ import {
   Users, BedDouble, Calendar, DollarSign, 
   TrendingUp, TrendingDown 
 } from 'lucide-react';
-import RoomStatus from './RoomStatus';
+import RoomStatus from './rooms/RoomStatus';
 
 const Dashboard = () => {
   // Sample data for stats
