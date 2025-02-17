@@ -82,13 +82,13 @@ const RoomForm = ({ onSave, onCancel }) => {
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2  hover:bg-gray-100 rounded"
+          className="px-4 py-2 text-white bg-[#056333] rounded cursor-pointer hover:bg-green-700"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-primary  bg-blue-500 rounded hover:bg-primary/90"
+          className="px-4 py-2 bg-primary text-white  bg-[#056333] rounded  cursor-pointer hover:bg-green-700"
         >
           Save Room
         </button>

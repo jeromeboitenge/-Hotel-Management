@@ -44,6 +44,55 @@ const RoomStatus = () => {
       notes: 'Guest prefers extra pillows',
       assignedStaff: 'Mary Johnson'
     },
+    {
+      id: 102,
+      type: 'Double',
+      status: 'maintenace',
+      price: 100,
+      amenities: ['WiFi', 'TV', 'AC'],
+      floor: '1st',
+      occupancyRate: 75,
+      lastCleaned: '2024-02-13',
+      maintenanceHistory: [
+        { date: '2024-01-15', type: 'Regular', notes: 'AC filter changed' }
+      ],
+      notes: 'Guest prefers extra pillows',
+      assignedStaff: 'Mary Johnson'
+    },
+    {
+      id: 103,
+      type: 'Double',
+      status: 'occupied',
+      guest: 'Boitenge',
+      checkIn: '2024-02-13',
+      checkOut: '2024-02-15',
+      cleaningStatus: 'clean',
+      price: 150,
+      amenities: ['WiFi', 'TV', 'AC'],
+      floor: '1st',
+      occupancyRate: 75,
+      lastCleaned: '2024-02-13',
+      maintenanceHistory: [
+        { date: '2024-01-15', type: 'Regular', notes: 'AC filter changed' }
+      ],
+      notes: 'Guest prefers extra pillows',
+      assignedStaff: 'Mary Johnson'
+    },
+    {
+      id: 101,
+      type: 'Single',
+      status: 'available',
+      price: 100,
+      amenities: ['WiFi', 'TV', 'AC'],
+      floor: '1st',
+      occupancyRate: 75,
+      lastCleaned: '2024-02-13',
+      maintenanceHistory: [
+        { date: '2024-01-15', type: 'Regular', notes: 'AC filter changed' }
+      ],
+      notes: 'Guest prefers extra pillows',
+      assignedStaff: 'Mary Johnson'
+    },
     // Add more sample rooms as needed
   ]);
 
@@ -190,11 +239,12 @@ const RoomStatus = () => {
               <span>Analytics</span>
             </button>
             <button
-              onClick={() => setIsAddRoomModalOpen(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-primary rounded hover:bg-primary/90"
+              onClick={() => setIsAddRoomModalOpen(true)} 
+              className="flex items-center space-x-2 px-4 py-2 bg-[#056333] rounded hover:bg-primary/90 cursor-pointer hover:bg-green-700"
             >
-              <Plus className="h-4 w-4" />
-              <span>Add New Room</span>
+          
+              <span className='text-white'>Add Room</span>
+              
             </button>
           </div>
         </div>
