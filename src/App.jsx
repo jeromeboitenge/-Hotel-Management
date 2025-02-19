@@ -7,6 +7,7 @@ import Home from './components/pages/Home';
 import Dashboard from './components/dashboard/Dashboard';
 import BookingForm from './components/BookingForm';
 import CustomerManagement from './components/Home/CustomerManagement';
+import Services from './components/service/Services';
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
               <Route path="/rooms" element={<RoomStatus />} />
               <Route path='/bookings' element={<BookingForm/>}/>
               <Route path='/customers' element={<CustomerManagement/>}/>
+              <Route path='/services' element={<Services/>}/>
+
             </Routes>
           </main>
         </div>
