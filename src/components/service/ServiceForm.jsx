@@ -8,6 +8,9 @@ const ServiceForm = ({
   isAddServiceModalOpen,
   setIsAddServiceModalOpen,
 }) => {
+  // Debugging: Log when the modal is rendered
+  console.log("ServiceForm rendered. isAddServiceModalOpen:", isAddServiceModalOpen);
+
   if (!isAddServiceModalOpen) return null;
 
   return (
@@ -76,7 +79,7 @@ const ServiceForm = ({
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-4 py-2 bg-primary text-green-600 rounded hover:bg-primary/90"
+              className="px-4 py-2 bg-primary text-black rounded hover:bg-primary/90 "
             >
               Add Service
             </button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, CheckCircle, XCircle, Users, Calendar, AlertCircle } from 'lucide-react';
-import ServiceForm from './ServiceForm'; // Import the new component
+import { Plus, Trash2, CheckCircle, XCircle } from 'lucide-react';
+import ServiceForm from './ServiceForm';
 
 const Services = () => {
   const [services, setServices] = useState([
@@ -72,6 +72,22 @@ const Services = () => {
 
   const handleAddService = (e) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!newService.name.trim()) {
+      alert("Please enter a service name.");
+      return;
+    }
+    if (!newService.assignedStaff.trim()) {
+      alert("Please assign a staff member.");
+      return;
+    }
+    if (newService.price <= 0) {
+      alert("Please enter a valid price.");
+      return;
+    }
+
+    // Add the new service
     setServices([...services, { ...newService, id: services.length + 1 }]);
     setIsAddServiceModalOpen(false);
     setNewService({
@@ -103,6 +119,9 @@ const Services = () => {
     setServiceRequests(serviceRequests.filter(request => request.id !== id));
   };
 
+  // Debugging: Log when the component renders
+  console.log("Services component rendered. isAddServiceModalOpen:", isAddServiceModalOpen);
+
   return (
     <div className="p-6 space-y-6">
       {/* Service Analytics */}
@@ -129,11 +148,14 @@ const Services = () => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Services</h2>
           <button
-            onClick={() => setIsAddServiceModalOpen(true)}
-            className="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90"
+            onClick={() => {
+              console.log("Opening modal"); // Debugging
+              setIsAddServiceModalOpen(true);
+            }}
+            className="flex items-center space-x-2 px-4 py-2 bg-primary text-black rounded hover:bg-primary/90"
           >
-            <Plus className="h-4 w-4" />
-            <span>Add New Service</span>
+        
+            <span >Add Service</span>
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -204,7 +226,7 @@ const Services = () => {
       </div>
 
       {/* Add New Service Modal */}
-      <ServiceForm
+      <ServiceForm  
         newService={newService}
         setNewService={setNewService}
         handleAddService={handleAddService}
